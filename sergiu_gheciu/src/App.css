@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+#root{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+  background: ivory;
+  padding: 25px;
+}
+h1 {
+  animation: H-scale infinite 9s ease-in-out;
+  height: 80px;
+  text-align: center;
+  font-family: sans-serif;
+  color: gray;
+  align-self: center;
+}
+
+.note-item{
+  padding: 4px 24px 4px 12px;
+  margin-bottom: 8px;
+  position: relative;
+  word-wrap: break-word;
+  transition: all 0.2s ease-in-out;
+}
+.note-item p{
+  margin:8px 0;
+}
+.note-item:hover{
+  box-shadow: -3px 2px 8px gray;
+}
+.note-item:hover .close-x{
+  display: flex;
+}
+.close-x{
+  position: absolute;
+  top: 0px;
+  right: 0px; 
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  color: #333;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+.close-x:hover{
+ background: rgba(0, 0, 0, 0.1);
+}
+@keyframes H-scale {
+  0%, 100% {
+    transform: scale(1.05); 
+  }
+  50% {
+    transform: scale(0.95); 
+  }
+
+}
