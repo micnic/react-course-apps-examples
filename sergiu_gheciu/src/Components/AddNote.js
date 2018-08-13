@@ -12,11 +12,6 @@ constructor(){
      };
 }
 
-     handleTextChange(e) {
-        this.setState({
-            text: e.target.value
-        });
-    }
     handleSubmit(e){
         e.preventDefault();
         if(this.refs.content.value === ''){
