@@ -1,0 +1,20 @@
+.timerRight {
+    margin-left: 5em;
+}
+
+#calculator, #calcValue {
+    left: 40%;
+}
+
+    #calculator * {
+        padding: 2em;
+    }
+
+    #calculator .buttons button {
+        margin: 0.2em;
+        width: 4.5em;
+    }
+
+#calcValue {
+    width: 19.5em;
+}

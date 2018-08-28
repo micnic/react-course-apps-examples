@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Spa.Controllers
 {
-    public class HomeController : Controller
+    public class LoadController : Controller
     {
         public IActionResult Index()
         {

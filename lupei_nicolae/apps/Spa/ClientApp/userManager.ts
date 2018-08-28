@@ -1,5 +1,5 @@
 import { createUserManager } from "redux-oidc";
-import { UserManagerSettings } from "oidc-client";
+import { UserManagerSettings} from "oidc-client";
 
 const userManagerConfig: UserManagerSettings = {
   client_id: "spa",

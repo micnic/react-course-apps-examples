@@ -1,6 +1,8 @@
 import Home from "./components/Home";
 import FetchData from "./components/FetchData";
-import Counter from "./components/Counter";
+import Chat from "./components/Chat";
+import Timer from "./components/Timer";
+import Calculator from "./components/Calculator";
 
 import * as React from "react";
 import { connect } from "react-redux";
@@ -31,7 +33,7 @@ class RoutesModule extends React.Component<RoutesModuleProps, {}>{
 
         // if location is callback page, return only CallbackPage route to allow signin process
         if (this.props.location.pathname == "/callback") {
-            return <Route path="/callback" component={CallbackPage} />
+            return <Route path="/callback" component={CallbackPage} />;
         }
 
         // check if user is signed in
@@ -63,11 +65,13 @@ class RoutesModule extends React.Component<RoutesModuleProps, {}>{
             <Switch>
                 <Layout>
                     <Route exact path="/" component={Home} />
-                    <Route path="/counter" component={Counter} />
+                    <Route path="/chat" component={Chat} />
+                    <Route path="/timer" component={Timer} />
+                    <Route path="/calc" component={Calculator} />
                     <Route path="/fetchdata/:startDateIndex?" component={FetchData} />
                 </Layout>
             </Switch>
-        )
+        );
     }
 }
 
