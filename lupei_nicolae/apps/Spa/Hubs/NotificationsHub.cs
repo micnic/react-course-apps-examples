@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IdentityServer.Models.ChatModels;
 using IdentityServerWithAspNetIdentity.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using IdentityServerWithAspNetIdentity.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Spa.Hubs
@@ -45,7 +45,7 @@ namespace Spa.Hubs
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        public Task SendMessage(string message)
+        public async Task SendMessage(string message)
         {
             var current = Context.ConnectionId;
             var userId = Connections.GetUserByConnectionId(current);
@@ -53,9 +53,9 @@ namespace Spa.Hubs
             var sender = _context.Users.FirstOrDefault(x => x.Id.Equals(userId.ToString()));
             foreach (var conn in req)
             {
-                Clients.Clients(conn).SendCoreAsync("OnReceive", new object[] { sender, message });
+                await Clients.Clients(conn).SendCoreAsync("OnReceive", new object[] { sender, message });
             }
-            return Task.CompletedTask;
+            await StoreMessageOnDb(sender, message);
         }
         /// <inheritdoc />
         /// <summary>
@@ -75,6 +75,25 @@ namespace Spa.Hubs
         {
             Connections.Remove(Context.ConnectionId);
             await base.OnDisconnectedAsync(exception);
+        }
+        /// <summary>
+        /// Store new message on db
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="message"></param>
+        private async Task StoreMessageOnDb(ApplicationUser user, string message)
+        {
+            var model = new Message
+            {
+                ApplicationUser = user,
+                Content = message,
+                Added = DateTime.Now,
+                AddedBy = Guid.Parse(user.Id),
+                ChangedBy = Guid.Parse(user.Id),
+                Changed = DateTime.Now
+            };
+            await _context.AddAsync(model);
+            await _context.SaveChangesAsync();
         }
     }
 

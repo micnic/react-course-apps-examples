@@ -12,6 +12,28 @@ export interface IChatState {
     user: User;
 }
 
+export interface IServerMessage {
+    added: Date;
+    addedBy: string;
+    applicationUserId: string;
+    changed: Date;
+    changedBy: string;
+    content: string;
+    id: string;
+    isDeleted: boolean;
+    applicationUser: IServerUser;
+}
+
+export interface IServerUser {
+    email: string;
+    userName: string;
+    phoneNumber: string;
+    normalizedUserName: string;
+    id: string;
+    emailConfirmed: boolean;
+    twoFactorEnabled: boolean;
+}
+
 export interface IMessage {
     message: string;
     key: string;
@@ -51,6 +73,28 @@ export default class Chat extends React.Component<RouteComponentProps<any>, {}> 
         this.socket.register().on("OnReceive", (sender: any, message: string) => {
             this.updateChatState(message, sender);
         });
+
+        fetch(`api/Chat/GetAll`)
+            .then(response => response.json() as Promise<IServerMessage[]>)
+            .then(data => {
+                const { chat, user } = this.state;
+
+                data.forEach(x => {
+                    chat.push({
+                        message: x.content,
+                        key: `${this.index++}`,
+                        user: {
+                            name: (user.profile.name === x.applicationUser.userName) ? "you" : x.applicationUser.userName,
+                            id: x.applicationUserId
+                        },
+                        time: x.added
+                    } as IMessage);
+                });
+
+                this.setState({
+                    chat
+                });
+            });
     }
     /*
      * On component unload

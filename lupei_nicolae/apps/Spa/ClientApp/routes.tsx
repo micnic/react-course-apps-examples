@@ -1,5 +1,4 @@
 import Home from "./components/Home";
-import FetchData from "./components/FetchData";
 import Chat from "./components/Chat";
 import Timer from "./components/Timer";
 import Calculator from "./components/Calculator";
@@ -68,7 +67,6 @@ class RoutesModule extends React.Component<RoutesModuleProps, {}>{
                     <Route path="/chat" component={Chat} />
                     <Route path="/timer" component={Timer} />
                     <Route path="/calc" component={Calculator} />
-                    <Route path="/fetchdata/:startDateIndex?" component={FetchData} />
                 </Layout>
             </Switch>
         );
