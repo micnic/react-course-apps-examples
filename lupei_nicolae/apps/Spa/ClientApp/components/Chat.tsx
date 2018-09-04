@@ -147,6 +147,14 @@ export default class Chat extends React.Component<RouteComponentProps<any>, {}> 
             message: event.target.value as string
         } as IChatState);
     };
+    /**
+     * Attempt for enter key
+     */
+    private onInput = (event: any) => {
+        if (event.key === "Enter") {
+            this.send(null);
+        }
+    };
 
     /*
      * Render component
@@ -177,7 +185,7 @@ export default class Chat extends React.Component<RouteComponentProps<any>, {}> 
                             )
                     }
                     <Form reply>
-                        <Form.TextArea onChange={this.onChange} value={this.state.message} />
+                        <Form.TextArea onChange={this.onChange} value={this.state.message} onKeyPress={this.onInput} />
                         <Button onClick={this.send} content="Send" labelPosition="left" icon="edit" primary />
                     </Form>
                 </Comment.Group>

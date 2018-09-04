@@ -9,6 +9,7 @@ export interface ICalcState {
     inProgress: boolean;
     value: number;
     prevalue: number;
+    operator: string;
 }
 
 export default class Calculator extends React.Component<RouteComponentProps<any>, {}> {
@@ -17,7 +18,8 @@ export default class Calculator extends React.Component<RouteComponentProps<any>
         resolved: true,
         inProgress: false,
         value: 0,
-        prevalue: 0
+        prevalue: 0,
+        operator: null
     } as ICalcState;
 
     /**
@@ -26,16 +28,9 @@ export default class Calculator extends React.Component<RouteComponentProps<any>
     private numberTap = (event: any) => {
         const num = parseInt(event.target.value);
         const { resolved, inProgress, target } = this.state;
+        console.log(num, target);
         if (!inProgress) {
-            if (target !== "0") {
-                this.setState({
-                    target: `${target}${num}`
-                });
-            } else {
-                this.setState({
-                    target: `${num}`
-                });
-            }
+            this.target(target, num);
         } else
             if (resolved) {
                 this.setState({
@@ -43,34 +38,102 @@ export default class Calculator extends React.Component<RouteComponentProps<any>
                     target: `${num}`
                 } as ICalcState);
             }
+            else {
+                this.target(target, num);
+            }
+    };
+    /**
+     * Change value in input
+     * @param target
+     * @param num
+     */
+    private target(target: string, num: number) {
+        if (target !== "0") {
+            this.setState({
+                target: `${target}${num}`
+            });
+
+            this.setState({
+                value: parseInt(this.state.target)
+            });
+        } else {
+            this.setState({
+                target: `${num}`
+            });
+            this.setState({
+                value: parseInt(this.state.target)
+            });
+        }
     };
 
     /**
      * On operator tap
      */
     private operatorTap = (event: any) => {
-        this.setState({
-            inProgress: true
-        } as ICalcState);
+        const { value } = this.state;
         const operator = event.target.value;
+        this.setState({
+            inProgress: true,
+            prevalue: value,
+            operator,
+            resolved: false,
+            target: ""
+        } as ICalcState);
+    }
+
+    /**
+     * Resolve
+     */
+    private resolve = (event: any) => {
+        const { value, prevalue } = this.state;
+        console.log(value, prevalue);
+        const target = this.getValue(value, prevalue);
+        this.setState({
+            target
+        });
+    }
+    /**
+     * Get value
+     * @param prev
+     * @param next
+     */
+    private getValue(prev, next): number {
+        let response = 0;
+        const { operator } = this.state;
         switch (operator) {
-            case "+":
-                {
-
-                } break;
-            case "-":
-                {
-
-                } break;
-            case "/":
-                {
-
-                } break;
-            case "*":
-                {
-
-                } break;
+            case "+": {
+                response = prev + next;
+            } break;
+            case "-": {
+                response = prev - next;
+            } break;
+            case "/": {
+                response = prev / next;
+            } break;
+            case "*": {
+                response = prev * next;
+            } break;
         }
+        return response;
+    }
+    /*
+     * Reset
+     */
+    private resetData = (event: any) => {
+        this.reset();
+    }
+    /*
+     * Reset
+     */
+    private reset(): void {
+        this.setState({
+            resolved: true,
+            prevalue: 0,
+            value: 0,
+            operator: null,
+            target: "0",
+            inProgress: false
+        } as ICalcState);
     }
 
     /*
@@ -87,8 +150,8 @@ export default class Calculator extends React.Component<RouteComponentProps<any>
                 <Input id="calcValue" value={target} /><br />
                 <div id="calculator">
                     <Button.Group>
-                        <Button content="ce" />
-                        <Button content="c" />
+                        <Button content="ce" onClick={this.resetData} />
+                        <Button content="c" onClick={this.resetData} />
                         <Button content="<" />
                         <Button content="/" value="/" onClick={this.operatorTap} />
                     </Button.Group><br />
@@ -114,7 +177,7 @@ export default class Calculator extends React.Component<RouteComponentProps<any>
                         <Button content="+-" />
                         <Button content="0" value="0" onClick={this.numberTap} />
                         <Button content="." />
-                        <Button content="=" />
+                        <Button content="=" onClick={this.resolve} />
                     </Button.Group>
                 </div>
             </React.Fragment>

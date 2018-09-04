@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using IdentityServerWithAspNetIdentity.Models;
 using IdentityServer.Models.ChatModels;
+using IdentityServer.Models.NoteModels;
 
 namespace IdentityServerWithAspNetIdentity.Data
 {
@@ -18,6 +15,7 @@ namespace IdentityServerWithAspNetIdentity.Data
         }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Note> Notes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

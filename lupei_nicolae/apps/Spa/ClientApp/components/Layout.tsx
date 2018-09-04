@@ -28,7 +28,9 @@ export default class Layout extends React.Component<{}, {}> {
             { as: NavLink, content: "Home", key: "home", to: "/" },
             { as: NavLink, content: "Chat", key: "chat", to: "/chat" },
             { as: NavLink, content: "Timer", key: "timer", to: "/timer" },
-            { as: NavLink, content: "Calculator", key: "calc", to: "/calc" }
+            { as: NavLink, content: "Calculator", key: "calc", to: "/calc" },
+            { as: NavLink, content: "TicTac", key: "tic", to: "/tictac" },
+            { as: NavLink, content: "Notes", key: "note", to: "/notes" }
         ];
         const rightItems = [
             //{ as: "a", content: "Login", key: "login" },

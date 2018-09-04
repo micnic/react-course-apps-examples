@@ -2,6 +2,8 @@ import Home from "./components/Home";
 import Chat from "./components/Chat";
 import Timer from "./components/Timer";
 import Calculator from "./components/Calculator";
+import TicTac from "./components/TicTac";
+import Notes from "./components/Notes";
 
 import * as React from "react";
 import { connect } from "react-redux";
@@ -67,6 +69,8 @@ class RoutesModule extends React.Component<RoutesModuleProps, {}>{
                     <Route path="/chat" component={Chat} />
                     <Route path="/timer" component={Timer} />
                     <Route path="/calc" component={Calculator} />
+                    <Route path="/tictac" component={TicTac} />
+                    <Route path="/notes" component={Notes} />
                 </Layout>
             </Switch>
         );

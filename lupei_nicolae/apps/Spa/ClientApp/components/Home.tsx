@@ -28,27 +28,28 @@ export default class Home extends React.Component<RouteComponentProps<{}>, {}> {
                 <Card
                     link
                     header="Chat"
-                    meta="Scientist"
-                    description={[
-                        "Rick is a genius scientist whose alcoholism and reckless,",
-                        " nihilistic behavior are a source of concern for his family.",
-                    ].join("")} />
+                    meta="Demo"
+                    description="Simple chat" />
                 <Card
                     link
                     header="Calculator"
-                    meta="Scientist"
-                    description={[
-                        "Rick is a genius scientist whose alcoholism and reckless,",
-                        " nihilistic behavior are a source of concern for his family.",
-                    ].join("")} />
+                    meta="Demo"
+                    description="In development" />
                 <Card
                     link
                     header="Time"
-                    meta="Scientist"
-                    description={[
-                        "Rick is a genius scientist whose alcoholism and reckless,",
-                        " nihilistic behavior are a source of concern for his family.",
-                    ].join("")} />
+                    meta="Demo"
+                    description="Simple timer" />
+                <Card
+                    link
+                    header="Tic Tac"
+                    meta="Demo"
+                    description="Simple game" />
+                <Card
+                    link
+                    header="Notes"
+                    meta="Demo"
+                    description="Simple notes" />
             </Card.Group>
         </div>;
     }

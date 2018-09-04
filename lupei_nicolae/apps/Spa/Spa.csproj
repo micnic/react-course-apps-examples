@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\Notes.tsx" />
+    <None Remove="ClientApp\components\TicTac.tsx" />
+    <None Remove="ClientApp\guid.tsx" />
     <None Remove="ClientApp\store\UserStore.tsx" />
     <None Remove="ClientApp\store\WebSocket.tsx" />
   </ItemGroup>
@@ -31,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\Notes.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\TicTac.tsx" />
+    <TypeScriptCompile Include="ClientApp\guid.tsx" />
     <TypeScriptCompile Include="ClientApp\store\UserStore.tsx" />
     <TypeScriptCompile Include="ClientApp\store\WebSocket.tsx" />
   </ItemGroup>

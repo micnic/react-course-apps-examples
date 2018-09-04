@@ -18,3 +18,27 @@
 #calcValue {
     width: 19.5em;
 }
+
+
+#tictac tr td {
+    padding: 2em;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 6em;
+    max-width: 6em;
+    max-height: 6em;
+    height: 6em;
+}
+
+    #tictac tr td:last-child {
+        border-right: none;
+    }
+
+#tictac tr:last-child td {
+    border-bottom: none;
+}
+
+.customSpace {
+    width: 100%;
+    margin: 1em;
+}
