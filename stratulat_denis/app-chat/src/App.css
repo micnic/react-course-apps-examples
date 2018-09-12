@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 1660px;
+  margin: auto;
+}
+
+.message-box {
+  height: 100vh;
+}
+
+.message-box__users {
+  height: 100%;
+  width: 25%;
+}
+
+.message-box__message-list {
+  height: 80%;
+  width: 100%;
+}
+
+.message-box__add-message {
+  height: 20%;
+  width: 100%;
+}
+
+.border {
+  border: 1px solid #ccc;
+}
