@@ -1,0 +1,62 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+}
+
+.calculator {
+  border-radius: 5px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 200px;
+  height: 300px;
+  text-align: center;
+  font-weight: 100;
+  border: 1px solid #999;
+}
+
+.calculator__cell {
+  border-bottom: 1px solid #999;
+  border-left: 1px solid #999;
+}
+
+.calculator__cell:nth-of-type(4n + 1) {
+  border-left: none;
+}
+
+.calculator__cell:nth-last-of-type(-n+3) {
+  border-bottom: none;
+}
+
+.calculator__cell--2 {
+  grid-column: span 2;
+}
+
+.calculator__cell {
+  align-items: center;
+  background-color: #E0E0E0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator__cell--strong {
+  background-color: #D6D6D6;
+}
+
+.calculator__cell--operation {
+  background-color: #F39248;
+  color: #fff;
+}
+
+.calculator__input {
+  background-color: #999999;
+  font-weight: 100;
+  color: #fff;
+  text-align: right;
+  grid-area: 1/1/2/5;
+  padding: 0 5px;
+  font-size: 30px;
+  border: 0;
+  border-bottom: 1px solid #999;
+}
+
